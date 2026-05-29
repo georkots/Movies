@@ -156,7 +156,7 @@
     + (feature.properties['Movie Name'] ? feature.properties['Movie Name'] : '')
     + '</td></tr>'
     + '<tr><td colspan="2">'
-    + (feature.properties['Photo'] ? '<img src="images/' + feature.properties['Photo'] + '" style="width:100%;max-width:900px;border-radius:14px;display:block;">' : '')
+    + (feature.properties['Photo'] ? '<img src="images/' + feature.properties['Photo'] + '" style="width:100%; min-width:400px; max-width:800px; border-radius:0px; display:block;">' : '')
     + '</td></tr>'
     + '<tr><td colspan="2" style="padding:10px 5px;">'
     + (feature.properties['Link'] ? '<a href="' + feature.properties['Link'] + '" target="_blank" style="color:#c0392b;font-weight:bold;">&#127916; View on IMDb</a>' : '')
@@ -166,7 +166,7 @@
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
-			layer.bindPopup(content, { maxHeight: 400 });
+			layer.bindPopup(content, { maxHeight: 800, maxWidth: 800, minWidth: 400 });
         }
 
         function style_Movies_1_0() {
