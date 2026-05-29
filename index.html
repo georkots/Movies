@@ -151,12 +151,17 @@
                 },
                 mouseover: highlightFeature,
             });
-            var popupContent = '<div>'
-    + (feature.properties['Photo'] ? '<img class="movie-popup-img" src="' + feature.properties['Photo'].replace(/\\/g, '/') + '">' : '')
-    + '<div class="movie-popup-body">'
-    + '<p class="movie-popup-title">' + (feature.properties['Movie Name'] ? feature.properties['Movie Name'] : '') + '</p>'
-    + (feature.properties['Link'] ? '<a class="movie-popup-link" href="' + feature.properties['Link'] + '" target="_blank">View on IMDb</a>' : '')
-    + '</div></div>';
+             var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Movie Name'] !== null ? autolinker.link(String(feature.properties['Movie Name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Photo'] !== null ? '<img src="images/' + String(feature.properties['Photo']).replace(/[\\/:]/g, '_').trim().replace(/'/g, '\'').replace(/"/g, '&quot;') + '">' : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Link'] ? '<a class="movie-popup-link" href="' + feature.properties['Link'] + '" target="_blank">View on IMDb</a>' : '')
+                    </tr>\
+                </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
