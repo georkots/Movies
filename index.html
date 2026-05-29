@@ -151,17 +151,12 @@
                 },
                 mouseover: highlightFeature,
             });
-            var popupContent = '<table>'
-    + '<tr><td colspan="2" style="font-weight:bold;font-size:14px;padding:6px 4px;">'
-    + (feature.properties['Movie Name'] ? feature.properties['Movie Name'] : '')
-    + '</td></tr>'
-    + '<tr><td colspan="2">'
-    + (feature.properties['Photo'] ? '<img src="images/' + feature.properties['Photo'] + '" style="width:100%;max-width:300px;border-radius:4px;display:block;">' : '')
-    + '</td></tr>'
-    + '<tr><td colspan="2" style="padding:6px 4px;">'
-    + (feature.properties['Link'] ? '<a href="' + feature.properties['Link'] + '" target="_blank" style="color:#c0392b;font-weight:bold;">&#127916; View on IMDb</a>' : '')
-    + '</td></tr>'
-    + '</table>';
+            var popupContent = '<div>'
+    + (feature.properties['Photo'] ? '<img class="movie-popup-img" src="' + feature.properties['Photo'].replace(/\\/g, '/') + '">' : '')
+    + '<div class="movie-popup-body">'
+    + '<p class="movie-popup-title">' + (feature.properties['Movie Name'] ? feature.properties['Movie Name'] : '') + '</p>'
+    + (feature.properties['Link'] ? '<a class="movie-popup-link" href="' + feature.properties['Link'] + '" target="_blank">&#9733; IMDb</a>' : '')
+    + '</div></div>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
